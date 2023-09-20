@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import "./Articles.css";
 import { useEffect, useState } from "react";
 import sampleData from "../../sample-data/sampleData.json";

@@ -42,4 +42,5 @@
 
 .article__button {
   width: 6rem;
+  cursor: pointer;
 }
