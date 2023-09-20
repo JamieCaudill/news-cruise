@@ -1,3 +1,4 @@
+
 describe('home page', () => {
   it('should display a header', () => {
     cy.visit('localhost:3000')
