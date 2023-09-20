@@ -1,17 +1,15 @@
-import React from 'react';
-import './App.css';
-import Header from '../Header/Header';
-import Articles from '../Articles/Articles';
+import React from "react";
+import "./App.css";
+import Home from "../Home/Home";
+import { Routes, Route } from "react-router-dom";
 // import apiCalls from '../../apiCalls';
 
-
-
 function App() {
-
   return (
     <div className="App">
-      <Header />
-      <Articles />
+      <Routes>
+        <Route path='/' element={<Home />} />
+      </Routes>
     </div>
   );
 }
