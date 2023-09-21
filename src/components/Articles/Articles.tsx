@@ -25,8 +25,10 @@ interface Props {
 
 const Articles = ({articles, getArticle}: Props) => {
 
-
   const articleList = articles.map((article) => {
+    const timestamp = article.publishedAt;
+    const date = timestamp.slice(0, 10);
+
     return (
       <div
         className="article"
@@ -44,7 +46,7 @@ const Articles = ({articles, getArticle}: Props) => {
               {article.author} {article.publishedAt}
             </p>
             <p className="article__description">{article.description}</p>
-            <Link to={`/article/${article.publishedAt}`}><button className="article__button" id={article.publishedAt} onClick={getArticle}>Read More</button> </Link>
+            <Link to={`/article/${date}`}><button className="article__button" id={article.publishedAt} onClick={getArticle}>Read More</button> </Link>
           </div>
         </div>
       </div>
