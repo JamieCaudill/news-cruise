@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Article from "../Article/Article";
 import sampleData from "../../sample-data/sampleData.json";
-// import apiCalls from '../../apiCalls';
+import getArticles from "../../apiCalls";
 
 
 type ArticleType = {
@@ -22,6 +22,12 @@ type ArticleType = {
   content: string | null;
 };
 
+interface Data {
+  status?: string;
+  totalResults?: number;
+  articles?: ArticleType[];
+}
+
 function App() {
 
   const [articles, setArticles] = useState<ArticleType[]>([]);
@@ -35,8 +41,10 @@ function App() {
   }
 
   useEffect(() => {
+    // getArticles().then((data: Data) => {
+    //   setArticles(data.articles || []);
+    // })
     setArticles(sampleData.articles);
-    console.log(articles);
   }, []);
 
   return (

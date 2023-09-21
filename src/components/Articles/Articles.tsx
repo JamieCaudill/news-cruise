@@ -1,7 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "./Articles.css";
-import { useEffect, useState } from "react";
-import sampleData from "../../sample-data/sampleData.json";
 import { Link } from "react-router-dom";
 
 type ArticleType = {
@@ -43,10 +41,10 @@ const Articles = ({articles, getArticle}: Props) => {
           <div className="article__header">
             <h3 className="article__title">{article.title}</h3>
             <p className="article__author">
-              {article.author} {article.publishedAt}
+              {article.author} {date}
             </p>
             <p className="article__description">{article.description}</p>
-            <Link to={`/article/${date}`}><button className="article__button" id={article.publishedAt} onClick={getArticle}>Read More</button> </Link>
+            <Link to={`/article/${article.publishedAt}`} className="article__button" id={article.publishedAt} onClick={getArticle}>Read More</Link>
           </div>
         </div>
       </div>
