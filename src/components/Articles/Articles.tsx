@@ -2,8 +2,9 @@
 import "./Articles.css";
 import { useEffect, useState } from "react";
 import sampleData from "../../sample-data/sampleData.json";
+import { Link } from "react-router-dom";
 
-type Article = {
+type ArticleType = {
   source: {
     id: string | null;
     name: string | null;
@@ -13,24 +14,23 @@ type Article = {
   description: string | null;
   url: string | null;
   urlToImage: string | null;
-  publishedAt: string | null;
+  publishedAt: string;
   content: string | null;
 };
 
-const Articles = () => {
-  const [articles, setArticles] = useState<Article[]>([]);
+interface Props {
+  articles: ArticleType[];
+  getArticle: (e: any) => void;
+}
 
-  useEffect(() => {
-    setArticles(sampleData.articles);
-    console.log(articles);
-  }, []);
+const Articles = ({articles, getArticle}: Props) => {
+
 
   const articleList = articles.map((article) => {
     return (
       <div
         className="article"
-        key={article.title}
-        id={article.title || undefined}
+        key={article.publishedAt}
       >
         <div className="article__container">
           <img
@@ -44,7 +44,7 @@ const Articles = () => {
               {article.author} {article.publishedAt}
             </p>
             <p className="article__description">{article.description}</p>
-            <button className="article__button">Read More</button>
+            <Link to={`/article/${article.publishedAt}`}><button className="article__button" id={article.publishedAt} onClick={getArticle}>Read More</button> </Link>
           </div>
         </div>
       </div>
