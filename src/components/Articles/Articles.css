@@ -14,9 +14,11 @@
 }
 
 .article__image {
-  max-width: 17rem;
-  margin-right: 1rem;
+  max-width: 24rem;
   height: auto;
+  margin-right: 1rem;
+  object-fit: contain;
+  align-self: flex-start;
 }
 
 .article__header {
@@ -43,4 +45,5 @@
 .article__button {
   width: 6rem;
   cursor: pointer;
+  margin-bottom: 1rem;
 }
