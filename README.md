@@ -1,46 +1,45 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# News Cruise
 
-## Available Scripts
+## by Jamie Caudill
 
-In the project directory, you can run:
+### DESCRIPTION
 
-### `npm start`
+Built with React, Typescript, CSS, Cypress, React Router and HTML, News Cruise displays the current top stories in Tech. The detailed wireframe was created using Figma, and the project board was built using Jira. Users are able to scroll through the most recent headlines, click "Read more" to see more details, and click a link that will navigate them to the source of the article. News Cruise was built in under 8 hours.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Preview
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![screenshot1](./src/images/preview1.png)
+![screenshot2](./src/images/preview2.png)
 
-### `npm test`
+### LINKS
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Project repo: [Github](https://github.com/JamieCaudill/news-cruise)
 
-### `npm run build`
+- React
+- Typescript
+- CSS
+- HTML
+- Npm
+- Git
+- Jira
+- Figma
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Wireframe
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![wireframe](./src/images/news-cruise.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Project Board
 
-### `npm run eject`
+![project_board](./src/images/preview3.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### SETUP
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Clone the repository to your local machine
+1. `cd` into the project
+1. Run `npm i` and `npm start`
+1. Enjoy!
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### CONTRIBUTORS
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Jamie Caudill: <https://github.com/JamieCaudill>
