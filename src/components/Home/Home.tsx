@@ -1,6 +1,6 @@
 import Header from "../Header/Header";
 import Articles from "../Articles/Articles";
-
+import Filter from "../Filter/Filter";
 
 type ArticleType = {
   source: {
@@ -19,15 +19,17 @@ type ArticleType = {
 interface Props {
   articles: ArticleType[];
   getArticle: (e: any) => void;
+  filterArticles: (filter: string) => void;
 }
 
-const Home = ({articles, getArticle}: Props) => {
+const Home = ({ articles, getArticle, filterArticles }: Props) => {
   return (
     <div className="Home">
       <Header />
-      <Articles articles={articles} getArticle={getArticle}/>
+      <Filter filterArticles={filterArticles}/>
+      <Articles articles={articles} getArticle={getArticle} />
     </div>
   );
-}
+};
 
 export default Home;

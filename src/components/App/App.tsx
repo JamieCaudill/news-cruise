@@ -32,6 +32,24 @@ function App() {
 
   const [articles, setArticles] = useState<ArticleType[]>([]);
   const [article, setArticle] = useState<ArticleType>({} as ArticleType);
+  const [filteredArticles, setFilteredArticles] = useState<ArticleType[]>([]);
+  const [filter, setFilter] = useState<string>('');
+
+  const filterArticles = (filter: string) => {
+    if (filter === 'All') {
+      setArticles(sampleData.articles);
+      return;
+    }
+    const filteredArticles = articles.filter((article) => {
+      return article.source.name?.includes(filter);
+    });
+    if (!filteredArticles.length) {
+      alert('No articles found');
+      setArticles(sampleData.articles);
+    } else {
+    setArticles(filteredArticles);
+    }
+  }
 
   const getArticle = (e: any) => {
     const foundArticle = articles.find((article) => {
@@ -41,10 +59,10 @@ function App() {
   }
 
   useEffect(() => {
-    getArticles().then((data: Data) => {
-      setArticles(data.articles || []);
-    })
-    // setArticles(sampleData.articles);
+    // getArticles().then((data: Data) => {
+    //   setArticles(data.articles || []);
+    // })
+    setArticles(sampleData.articles);
   }, []);
 
   return (
@@ -54,6 +72,7 @@ function App() {
         element={<Home 
           articles={articles} 
           getArticle={getArticle}
+          filterArticles={filterArticles}
           />} />
         <Route path='/article/*' element={<Article article={article}/>} />
       </Routes>
