@@ -47,7 +47,7 @@ function App() {
           articles={articles} 
           getArticle={getArticle}
           />} />
-        <Route path='/article/*' element={<Article />} />
+        <Route path='/article/*' element={<Article article={article}/>} />
       </Routes>
     </div>
   );
