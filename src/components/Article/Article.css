@@ -22,3 +22,9 @@
   display: flex;
   flex-direction: column;
 }
+
+.story__button {
+  margin: 3rem;
+  width: 6rem;
+  cursor: pointer;
+}

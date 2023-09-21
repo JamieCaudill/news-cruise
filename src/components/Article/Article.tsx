@@ -1,10 +1,10 @@
 import Header from "../Header/Header";
 import "./Article.css";
+import { Link } from "react-router-dom";
 
 const Article = ({ article }: any) => {
-
   const timestamp = article.publishedAt;
-  const date = timestamp.slice(0, 10);
+  const date = timestamp?.slice(0, 10);
 
   return (
     <div className="story">
@@ -23,9 +23,14 @@ const Article = ({ article }: any) => {
           <p className="story__published">{date}</p>
           <p className="story__source">{`Source: ${article.source.name}`}</p>
           <p className="story__content">{article.content}</p>
-          <a href={article.url} target="blank" className="story__link">Read full article</a>
+          <a href={article.url} target="blank" className="story__link">
+            Read full article
+          </a>
         </div>
       </div>
+      <Link to="/">
+        <button className="story__button">Back to Articles</button>
+      </Link>
     </div>
   );
 };
