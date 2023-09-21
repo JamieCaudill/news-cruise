@@ -31,7 +31,6 @@ function App() {
   const [articles, setArticles] = useState<ArticleType[]>([]);
   const [article, setArticle] = useState<ArticleType>({} as ArticleType);
   const [filteredArticles, setFilteredArticles] = useState<ArticleType[]>([]);
-  const [filter, setFilter] = useState<string>("");
 
   const filterArticles = (filter: string) => {
     if (filter === "All") {
@@ -56,10 +55,13 @@ function App() {
   };
 
   useEffect(() => {
-    // getArticles().then((data: Data) => {
-    //   setArticles(data.articles || []);
-    // })
-    setArticles(sampleData.articles);
+    getArticles().then((data: Data) => {
+      const writtenArticles = data.articles?.filter((article) => {
+        return article.source.name !== "YouTube";
+      });
+      setArticles(writtenArticles || []);
+    });
+    // setArticles(writtenArticles);
   }, []);
 
   return (

@@ -14,7 +14,7 @@ describe("home page", () => {
   });
 
   it("should display a list of articles", () => {
-    cy.get(".article").should("have.length", 8);
+    cy.get(".article").should("have.length", 5);
     cy.get(".article")
       .first()
       .should(
@@ -44,4 +44,13 @@ describe("home page", () => {
     cy.get(".article").last().find("img").should("have.attr", "src");
     cy.get(".article").last().find("a").should("contain", "Read More");
   });
+
+  it("should have an option to filter by source", () => {
+    cy.get("select").select("Polygon");
+    cy.get(".article").should("have.length", 2);
+    cy.get(".article").first().should("contain", "Polygon");
+    cy.get(".article").last().should("contain", "Polygon");
+    cy.get("select").select("All");
+    cy.get(".article").should("have.length", 5);
+  })
 });
