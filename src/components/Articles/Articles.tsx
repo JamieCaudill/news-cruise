@@ -44,12 +44,12 @@ const Articles = ({ articles, getArticle, filteredArticles, error }: Props) => {
     );
   }
 
-  const displayArticles = articleList.map((article) => {
+  const displayArticles = articleList.map((article, index) => {
     const timestamp = article.publishedAt;
     const date = timestamp.slice(0, 10);
 
     return (
-      <div className="article" key={article.publishedAt}>
+      <div className="article" key={index}>
         <div className="article__container">
           <img
             className="article__image"
