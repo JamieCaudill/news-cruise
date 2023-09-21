@@ -1,30 +1,56 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 
 // pass in function that filters articles by source and updates state
 // 
 
+type ArticleType = {
+  source: {
+    id: string | null;
+    name: string | null;
+  };
+  author: string | null;
+  title: string | null;
+  description: string | null;
+  url: string | null;
+  urlToImage: string | null;
+  publishedAt: string;
+  content: string | null;
+};
+
+
 interface Props {
   filterArticles: (filter: string) => void;
+  articles: ArticleType[];
 }
 
-const Filter = ({filterArticles}: Props) => {
+const Filter = ({filterArticles, articles}: Props) => {
   const [filter, setFilter] = useState<string>('');
 
   const handleChange = (e: any) => {
-    setFilter(e.target.value);
+    const source = e.target.value;
+    setFilter(source);
+    
   }
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
+  useEffect(() => {
     filterArticles(filter);
-  }
+  }, [filter]);
+
+  const uniqueSources = Array.from(new Set<string>(articles.map(article => {
+    return article.source.name || '';
+  })));
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="filter">Filter by source</label>
-      <input type="text" id="filter" value={filter} onChange={handleChange}/>
-      <button type="submit">Filter</button>
-    </form>
+    <label htmlFor="filter">Filter by Source:  
+      <select className="filter" onChange={handleChange}>
+        <option value="">All</option>
+        {uniqueSources.map((source, index) => {
+          return <option key={index} value={source}>{source}</option>
+        }
+        )}
+      </select>
+    </label>
   );
 }
 

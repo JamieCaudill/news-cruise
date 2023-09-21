@@ -20,14 +20,15 @@ interface Props {
   articles: ArticleType[];
   getArticle: (e: any) => void;
   filterArticles: (filter: string) => void;
+  filteredArticles: ArticleType[];
 }
 
-const Home = ({ articles, getArticle, filterArticles }: Props) => {
+const Home = ({ articles, getArticle, filterArticles, filteredArticles }: Props) => {
   return (
     <div className="Home">
       <Header />
-      <Filter filterArticles={filterArticles}/>
-      <Articles articles={articles} getArticle={getArticle} />
+      <Filter filterArticles={filterArticles} articles={articles}/>
+      <Articles articles={articles} getArticle={getArticle} filteredArticles={filteredArticles}/>
     </div>
   );
 };

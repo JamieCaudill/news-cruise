@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "./Articles.css";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 type ArticleType = {
   source: {
@@ -19,11 +20,21 @@ type ArticleType = {
 interface Props {
   articles: ArticleType[];
   getArticle: (e: any) => void;
+  filteredArticles: ArticleType[];
 }
 
-const Articles = ({articles, getArticle}: Props) => {
+const Articles = ({articles, getArticle, filteredArticles}: Props) => {
+  const [articleList, setArticleList] = useState<ArticleType[]>([]);
 
-  const articleList = articles.map((article) => {
+  useEffect(() => {
+    if (filteredArticles.length) {
+      setArticleList(filteredArticles);
+    } else {
+      setArticleList(articles);
+    }
+  }, [filteredArticles, articles])
+  
+  const displayArticles = articleList.map((article) => {
     const timestamp = article.publishedAt;
     const date = timestamp.slice(0, 10);
 
@@ -54,7 +65,7 @@ const Articles = ({articles, getArticle}: Props) => {
   return (
     <div className="articles">
       <h2 className="articles__title">Articles</h2>
-      {articleList}
+      {displayArticles}
     </div>
   );
 };

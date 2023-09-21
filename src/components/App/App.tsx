@@ -7,7 +7,6 @@ import Article from "../Article/Article";
 import sampleData from "../../sample-data/sampleData.json";
 import getArticles from "../../apiCalls";
 
-
 type ArticleType = {
   source: {
     id: string | null;
@@ -29,34 +28,32 @@ interface Data {
 }
 
 function App() {
-
   const [articles, setArticles] = useState<ArticleType[]>([]);
   const [article, setArticle] = useState<ArticleType>({} as ArticleType);
   const [filteredArticles, setFilteredArticles] = useState<ArticleType[]>([]);
-  const [filter, setFilter] = useState<string>('');
+  const [filter, setFilter] = useState<string>("");
 
   const filterArticles = (filter: string) => {
-    if (filter === 'All') {
-      setArticles(sampleData.articles);
+    if (filter === "All") {
+      setFilteredArticles(sampleData.articles);
+      console.log("all");
       return;
     }
     const filteredArticles = articles.filter((article) => {
+      console.log(filter);
       return article.source.name?.includes(filter);
     });
-    if (!filteredArticles.length) {
-      alert('No articles found');
-      setArticles(sampleData.articles);
-    } else {
-    setArticles(filteredArticles);
+    if (filteredArticles.length) {
+      setFilteredArticles(filteredArticles);
     }
-  }
+  };
 
   const getArticle = (e: any) => {
     const foundArticle = articles.find((article) => {
       return article.publishedAt === e.target.id;
     });
-    setArticle(foundArticle || {} as ArticleType);
-  }
+    setArticle(foundArticle || ({} as ArticleType));
+  };
 
   useEffect(() => {
     // getArticles().then((data: Data) => {
@@ -68,13 +65,18 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path='/' 
-        element={<Home 
-          articles={articles} 
-          getArticle={getArticle}
-          filterArticles={filterArticles}
-          />} />
-        <Route path='/article/*' element={<Article article={article}/>} />
+        <Route
+          path="/"
+          element={
+            <Home
+              articles={articles}
+              getArticle={getArticle}
+              filterArticles={filterArticles}
+              filteredArticles={filteredArticles}
+            />
+          }
+        />
+        <Route path="/article/*" element={<Article article={article} />} />
       </Routes>
     </div>
   );
