@@ -1,4 +1,3 @@
-import React from "react";
 import "./App.css";
 import Home from "../Home/Home";
 import { Routes, Route } from "react-router-dom";
@@ -31,6 +30,7 @@ function App() {
   const [articles, setArticles] = useState<ArticleType[]>([]);
   const [article, setArticle] = useState<ArticleType>({} as ArticleType);
   const [filteredArticles, setFilteredArticles] = useState<ArticleType[]>([]);
+  const [error, setError] = useState<string>("");
 
   const filterArticles = (filter: string) => {
     if (filter === "All") {
@@ -55,13 +55,17 @@ function App() {
   };
 
   useEffect(() => {
-    // getArticles().then((data: Data) => {
-      const writtenArticles = sampleData.articles?.filter((article) => {
-        return article.source.name !== "YouTube";
-      });
-    //   setArticles(writtenArticles || []);
-    // });
-    setArticles(writtenArticles);
+    getArticles().then((data: Data) => {
+    const writtenArticles = data.articles?.filter((article) => {
+      return article.source.name !== "YouTube";
+      })
+      setArticles(writtenArticles || []);
+    })
+    .catch((error) => {
+      setError(error.message);
+      console.log(error.message)
+    })
+    // setArticles(writtenArticles);
   }, []);
 
   return (
@@ -75,6 +79,7 @@ function App() {
               getArticle={getArticle}
               filterArticles={filterArticles}
               filteredArticles={filteredArticles}
+              error={error}
             />
           }
         />
