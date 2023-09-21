@@ -53,4 +53,9 @@ describe("home page", () => {
     cy.get("select").select("All");
     cy.get(".article").should("have.length", 5);
   })
+
+  it("should display an error message if error occurs", () => {
+    cy.intercept('GET', "https://newsapi.org/v2/top-headlines?country=us&apiKey=180f2a4ded404054a9c41418048e9004&category=technology", { statusCode: 500 })
+    cy.get(".articles__error").should("contain", "Failed to fetch"); 
+  })
 });

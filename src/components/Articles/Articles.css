@@ -29,7 +29,7 @@
 }
 
 .article__title {
-  margin: .5rem 0;
+  margin: 0.5rem 0;
 }
 
 .article__author {
@@ -46,4 +46,25 @@
   width: 6rem;
   cursor: pointer;
   margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .article__container {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+  }
+
+  .article__image {
+    max-width: 100%;
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .article__header {
+    width: 90%;
+  }
+  .article__description {
+    margin-right: 0;
+  }
 }

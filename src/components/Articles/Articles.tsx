@@ -21,9 +21,10 @@ interface Props {
   articles: ArticleType[];
   getArticle: (e: any) => void;
   filteredArticles: ArticleType[];
+  error: string;
 }
 
-const Articles = ({articles, getArticle, filteredArticles}: Props) => {
+const Articles = ({ articles, getArticle, filteredArticles, error }: Props) => {
   const [articleList, setArticleList] = useState<ArticleType[]>([]);
 
   useEffect(() => {
@@ -32,17 +33,23 @@ const Articles = ({articles, getArticle, filteredArticles}: Props) => {
     } else {
       setArticleList(articles);
     }
-  }, [filteredArticles, articles])
-  
-  const displayArticles = articleList.map((article) => {
+  }, [filteredArticles, articles]);
+
+  if (error) {
+    return (
+      <div className="articles">
+        <h2 className="articles__title">Articles</h2>
+        <p className="articles__error">{error}</p>
+      </div>
+    );
+  }
+
+  const displayArticles = articleList.map((article, index) => {
     const timestamp = article.publishedAt;
     const date = timestamp.slice(0, 10);
 
     return (
-      <div
-        className="article"
-        key={article.publishedAt}
-      >
+      <div className="article" key={index}>
         <div className="article__container">
           <img
             className="article__image"
@@ -55,7 +62,14 @@ const Articles = ({articles, getArticle, filteredArticles}: Props) => {
               {article.author} {date}
             </p>
             <p className="article__description">{article.description}</p>
-            <Link to={`/article/${article.publishedAt}`} className="article__button" id={article.publishedAt} onClick={getArticle}>Read More</Link>
+            <Link
+              to={`/article/${article.publishedAt}`}
+              className="article__button"
+              id={article.publishedAt}
+              onClick={getArticle}
+            >
+              Read More
+            </Link>
           </div>
         </div>
       </div>
