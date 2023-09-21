@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
+import "./Filter.css";
 
 // pass in function that filters articles by source and updates state
 // 

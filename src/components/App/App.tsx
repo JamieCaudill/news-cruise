@@ -55,13 +55,13 @@ function App() {
   };
 
   useEffect(() => {
-    getArticles().then((data: Data) => {
-      const writtenArticles = data.articles?.filter((article) => {
+    // getArticles().then((data: Data) => {
+      const writtenArticles = sampleData.articles?.filter((article) => {
         return article.source.name !== "YouTube";
       });
-      setArticles(writtenArticles || []);
-    });
-    // setArticles(writtenArticles);
+    //   setArticles(writtenArticles || []);
+    // });
+    setArticles(writtenArticles);
   }, []);
 
   return (
