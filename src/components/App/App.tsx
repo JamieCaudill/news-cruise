@@ -41,10 +41,10 @@ function App() {
   }
 
   useEffect(() => {
-    // getArticles().then((data: Data) => {
-    //   setArticles(data.articles || []);
-    // })
-    setArticles(sampleData.articles);
+    getArticles().then((data: Data) => {
+      setArticles(data.articles || []);
+    })
+    // setArticles(sampleData.articles);
   }, []);
 
   return (
